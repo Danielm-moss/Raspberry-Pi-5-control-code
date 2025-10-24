@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 
-    const char* CHIP = "/dev/gpiochip4"; // use your correct chip path
+    const char* CHIP = "/dev/gpiochip4";
     const unsigned CAPTURE = 26;
     const unsigned BUTTON = 6;
 
@@ -15,7 +15,7 @@ int main() {
 
     gpiod::line_settings cap_behavior;
     cap_behavior.set_direction(gpiod::line::direction::OUTPUT);
-    cap_behavior.set_output_value(gpiod::line::value::INACTIVE); // start LOW
+    cap_behavior.set_output_value(gpiod::line::value::INACTIVE);
 
     gpiod::line_settings button_behavior;
     button_behavior.set_direction(gpiod::line::direction::INPUT);
@@ -34,7 +34,7 @@ int main() {
             cout<<"button pressed"<<endl;
             req.set_value(CAPTURE, gpiod::line::value::ACTIVE);
             cout<<"Starting capture"<<endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(20)); // 0.02 seconds
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
             flashing = false;
             req.set_value(CAPTURE, gpiod::line::value::INACTIVE);
             cout<<"Capture done"<<endl;
